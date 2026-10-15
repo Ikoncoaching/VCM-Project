@@ -1,12 +1,11 @@
 // Upload the protected course media to the private "course-media" bucket.
 //
-// Run once after supabase/course-media.sql, from the repo root:
+// Run once after the migration, from the repo root:
 //
-//   SUPABASE_SERVICE_ROLE_KEY=... node scripts/upload-media.mjs
+//   npm run upload-media
 //
-// NEXT_PUBLIC_SUPABASE_URL is read from .env.local; the service key is not
-// kept on disk here, so pass it on the command line (Supabase dashboard,
-// Project Settings, API). Paths in the bucket match media/ exactly, which is
+// NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are read from
+// .env.local (gitignored), or the key from the environment. Paths in the bucket match media/ exactly, which is
 // what the rows in public.course_media name. Safe to re-run: existing objects
 // are replaced.
 
@@ -22,7 +21,9 @@ const env = Object.fromEntries(
     .map((l) => l.split("=").map((s) => s.trim()))
 );
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? env.NEXT_PUBLIC_SUPABASE_URL;
-const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+// the service key may sit in .env.local too (gitignored), so nobody has to
+// paste a secret into a terminal
+const key = process.env.SUPABASE_SERVICE_ROLE_KEY ?? env.SUPABASE_SERVICE_ROLE_KEY;
 if (!url || !key) {
   console.error("Need NEXT_PUBLIC_SUPABASE_URL (.env.local) and SUPABASE_SERVICE_ROLE_KEY (env).");
   process.exit(1);
