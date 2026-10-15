@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Color tokens: Midnight, the one theme (Kirk, 2026-09-29: dark is the only
+   look; the four light palettes and the client's color picker are gone).
+
+   Every brand color is a plain custom property here, and the @theme block
+   below points Tailwind at those properties rather than at literal hex, so
+   bg-navy / text-brass / border-navy all read from one place.
+
+   The names are the brand's, not the colors they now hold: --navy is the
+   ink, and on this dark page the ink is white. Renaming it would touch
+   nearly every file for nothing anyone sees, so read `text-navy` as "ink".
+
+     --navy    ink: headings, body copy, borders. Reads against the page.
+     --primary solid fill behind white text (buttons, badges, pills).
+     --accent  the same split for gold.
+     --paper   card and panel surfaces.
+
+   Tinted washes (bg-navy/10, bg-brass/5) track the ink at low alpha, which
+   keeps them subtle. The exported document, the PDF, the Word file and the
+   emails carry their own fixed light colors and do not read these.
+--------------------------------------------------------------------------- */
+
+:root {
+  --navy: #ffffff;
+  --navy-tint: #d6e2f0;
+  --navy-deep: #161f38;
+  --navy-deep-tint: #22305a;
+  --mist: #1a2440;
+  --brass: #e3b568; /* gold */
+  --salmon: #f07b62;
+  --fuchsia: #ef4a78;
+  --sand: #0b1120;
+
+  --primary: #2f5f8c;
+  --accent: #8a6320;
+  --paper: #131c33;
+
+  --background: var(--sand);
+  --foreground: #ffffff;
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  /* Ikon brand bible palette */
+  --color-navy: var(--navy); /* light blue, primary */
+  --color-navy-tint: var(--navy-tint);
+  --color-navy-deep: var(--navy-deep); /* dark blue */
+  --color-navy-deep-tint: var(--navy-deep-tint);
+  --color-mist: var(--mist);
+  --color-brass: var(--brass); /* gold */
+  --color-salmon: var(--salmon);
+  --color-fuchsia: var(--fuchsia);
+  --color-sand: var(--sand);
+  /* role tokens, see the note at the top of this file */
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-paper: var(--paper);
+  --font-sans: var(--font-open-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-lato), "Lato", sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-open-sans), "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+/* printing a document page (app/company-export): the app chrome stays on
+   screen and off paper */
+@media print {
+  header,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+}
+
+/* Rich text, edited and shown (RICHTEXT.md): headings, lists, links, and
+   the fixed colors and sizes, carried as data attributes and mapped to the
+   color tokens. The editor's surface and RichText share this class. */
+.prose-atlas h3 {
+  font-family: var(--font-lato), "Lato", sans-serif;
+  font-size: 1.25em;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0.9em 0 0.35em;
+}
+.prose-atlas h4 {
+  font-family: var(--font-lato), "Lato", sans-serif;
+  font-size: 1.05em;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0.8em 0 0.3em;
+}
+.prose-atlas h3:first-child,
+.prose-atlas h4:first-child,
+.prose-atlas p:first-child {
+  margin-top: 0;
+}
+.prose-atlas p {
+  margin: 0 0 0.6em;
+  white-space: pre-wrap;
+}
+.prose-atlas p:last-child,
+.prose-atlas ul:last-child,
+.prose-atlas ol:last-child {
+  margin-bottom: 0;
+}
+.prose-atlas ul,
+.prose-atlas ol {
+  margin: 0 0 0.6em;
+  padding-left: 1.5em;
+}
+.prose-atlas ul {
+  list-style: disc;
+}
+.prose-atlas ol {
+  list-style: decimal;
+}
+/* a numbered list steps down like an outline: 1, a, i (Kirk, 2026-09-28) */
+.prose-atlas ol ol {
+  list-style: lower-alpha;
+}
+.prose-atlas ol ol ol {
+  list-style: lower-roman;
+}
+.prose-atlas ul ul {
+  list-style: circle;
+}
+.prose-atlas li {
+  margin: 0.15em 0;
+}
+.prose-atlas li p {
+  margin: 0;
+}
+.prose-atlas a {
+  color: var(--navy-tint);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-atlas [data-color="navy"] { color: var(--navy); }
+.prose-atlas [data-color="blue"] { color: var(--navy-tint); }
+.prose-atlas [data-color="gold"] { color: var(--brass); }
+.prose-atlas [data-color="green"] { color: #2f9e5f; }
+.prose-atlas [data-color="red"] { color: var(--salmon); }
+.prose-atlas [data-color="muted"] { color: color-mix(in srgb, var(--navy) 55%, transparent); }
+.prose-atlas [data-size="small"] { font-size: 0.875em; }
+.prose-atlas [data-size="large"] { font-size: 1.25em; }
+.prose-atlas [data-indent="1"] { margin-left: 1.5rem; }
+.prose-atlas [data-indent="2"] { margin-left: 3rem; }
+.prose-atlas [data-indent="3"] { margin-left: 4.5rem; }
+.prose-atlas [data-indent="4"] { margin-left: 6rem; }
+/* the editor's own surface */
+.ProseMirror:focus {
+  outline: none;
+}
