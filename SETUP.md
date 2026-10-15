@@ -5,8 +5,9 @@ part of it._
 
 - GitHub: github.com/Ikoncoaching/VCM-Project (private).
 - Supabase: project `vcm-project`, its own, separate from Atlas's.
-- Vercel: project `vcm-project-nlsq` in the Ikon Advisors team, deploying
-  from `main`; production at https://vcm.ikoncoaching.com, also
+- Vercel: project `vcm-project` in the Ikon Advisors team (created as
+  `vcm-project-nlsq`, renamed the same day), deploying from `main`;
+  production at https://vcm.ikoncoaching.com, also
   vcm-project-nlsq.vercel.app. Deployment URLs ending in `-ikon-advisors`
   sit behind Vercel's login and are for Kirk only.
 - The ten films are in the private `course-media` bucket.

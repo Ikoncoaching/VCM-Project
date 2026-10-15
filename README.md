@@ -6,7 +6,7 @@ helps a person discover and articulate the distinctive way they create
 value. Anyone with an email can sign in and work through it; Kirk reads
 participants' work on the Participants page.
 
-Split out of Atlas (github.com/Ikoncoaching/vcm) on 2026-10-15. The module
+Split out of Atlas (github.com/Ikoncoaching/atlas, named vcm until 2026-10-15) on 2026-10-15. The module
 components, the rich text editor, the progress and save layers, and the
 video slot are Atlas's, copied as they stood that day; the shell, sign-in,
 welcome page and coach view are this site's own. The two are maintained
