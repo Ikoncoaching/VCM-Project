@@ -30,7 +30,9 @@ the domain. Everything else is in the repo. About twenty minutes.
    Redirect URLs.
 5. Authentication, Providers, Email: leave signups enabled. Anyone with an
    email may start the project; that is the product.
-6. Authentication, Emails, Magic Link: the subject and body. Supabase sends
+6. Authentication, Emails, Magic Link: paste the body of
+   `supabase/email-magic-link.html` (everything after the comment) and set
+   the subject to "Your Sign-in Code - The VCM Project". Supabase sends
    from its own address until SMTP is configured (Project Settings,
    Authentication, SMTP); the Gmail app password from Atlas works here too.
 7. Sign in to the app once as kirk@ikoncoaching.com, then in the SQL Editor:
