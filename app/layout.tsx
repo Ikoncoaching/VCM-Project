@@ -40,7 +40,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                   .
                 </p>
                 <div className="flex gap-5">
-                  <a href={IKON_URL} className="hover:text-navy">ikoncoaching.com</a>
+                  <a href={IKON_URL} className="hover:text-navy">Ikon Coaching</a>
                   <Link href="/" className="hover:text-navy">About the project</Link>
                 </div>
               </div>

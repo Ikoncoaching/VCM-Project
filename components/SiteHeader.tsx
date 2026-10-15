@@ -23,7 +23,7 @@ export default function SiteHeader() {
         </Link>
         <nav className="flex items-center gap-5 text-sm text-white/75">
           <a href={IKON_URL} className="hover:text-white">
-            ikoncoaching.com
+            Ikon Coaching
           </a>
           {enabled && profile ? (
             <>
