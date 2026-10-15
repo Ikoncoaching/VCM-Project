@@ -12,7 +12,8 @@ video slot are Atlas's, copied as they stood that day; the shell, sign-in,
 welcome page and coach view are this site's own. The two are maintained
 separately from here on.
 
-- Setup, in Kirk's accounts: `SETUP.md`
+- Live at https://vcm.ikoncoaching.com since 2026-10-15. Setup and the
+  account-side record: `SETUP.md`
 - Running locally: `npm install`, then `npm run dev` (port 3100). Without
   Supabase keys the app runs against the browser only.
 - Checks: `npx tsc --noEmit` and `npm run lint`.

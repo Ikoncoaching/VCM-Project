@@ -1,5 +1,16 @@
 # Setting up the VCM Project
 
+_Done on 2026-10-15. Kept as the record of what exists and how to redo any
+part of it._
+
+- GitHub: github.com/Ikoncoaching/VCM-Project (private).
+- Supabase: project `vcm-project`, its own, separate from Atlas's.
+- Vercel: project `vcm-project-nlsq` in the Ikon Advisors team, deploying
+  from `main`; production at https://vcm.ikoncoaching.com, also
+  vcm-project-nlsq.vercel.app. Deployment URLs ending in `-ikon-advisors`
+  sit behind Vercel's login and are for Kirk only.
+- The ten films are in the private `course-media` bucket.
+
 Three things need Kirk's accounts: a Supabase project, a Vercel project, and
 the domain. Everything else is in the repo. About twenty minutes.
 
@@ -32,8 +43,11 @@ on the machine that built this, and upload to the private `course-media`
 bucket with the service role key (Project Settings, API, `service_role`):
 
 ```bash
-SUPABASE_SERVICE_ROLE_KEY=... npm run upload-media
+npm run upload-media
 ```
+
+The script reads `SUPABASE_SERVICE_ROLE_KEY` from `.env.local` (gitignored)
+or from the environment.
 
 Paths in the bucket must match `media/` exactly; the script does that.
 
